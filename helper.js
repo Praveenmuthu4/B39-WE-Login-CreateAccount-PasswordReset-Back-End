@@ -24,4 +24,3 @@ export async function getUserByName(Email) {
 export async function getUserList() {
   return await client.db("password-reset").collection("users").find().toArray();
 }
-

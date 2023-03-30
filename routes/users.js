@@ -8,9 +8,7 @@ import {
   getUserList,
 } from "../helper.js";
 const router = express.Router();
-// let user = {
-//   Email: getUserList(),
-// };
+
 
 router.post("/signup", async (req, res) => {
   const { Email, password } = req.body;
@@ -80,7 +78,8 @@ router.post("/forget-password",async (req, res, next) => {
     Email: userFromDb.Email,
   };
   const token = jwt.sign(payload, secret, { expiresIn: "15m" });
-  const link = `http://localhost:3500/reset-password/${userFromDb.Email}/${token}`;
+  const localhost = `http://localhost:4000/reset-password/${userFromDb.Email}/${token}`;
+  const link =  localhost
   console.log(link);
   res.send(
     "Password reset link has been sent to your email ID and Its valid for 15 minutes only"
