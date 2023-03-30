@@ -7,18 +7,18 @@ export async function genPassword(password) {
   return hashedPassword;
 }
 
-export async function createUser(username, hashedPassword) {
+export async function createUser(Email, hashedPassword) {
   return await client
     .db("password-reset")
     .collection("users")
-    .insertOne({ username: username, password: hashedPassword });
+    .insertOne({ Email: Email, password: hashedPassword });
 }
 
-export async function getUserByName(username) {
+export async function getUserByName(Email) {
   return await client
     .db("password-reset")
     .collection("users")
-    .findOne({ username: username });
+    .findOne({ Email: Email });
 }
 
 export async function getUserList() {

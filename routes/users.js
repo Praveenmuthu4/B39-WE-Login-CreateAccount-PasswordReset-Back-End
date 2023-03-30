@@ -10,12 +10,12 @@ import {
 const router = express.Router();
 
 router.post("/signup", async (req, res) => {
-  const { username, password } = req.body;
-  console.log(username, password);
-  const isUserExist = await getUserByName(username);
+  const { Email, password } = req.body;
+  console.log(Email, password);
+  const isUserExist = await getUserByName(Email);
   console.log(isUserExist);
   if (isUserExist) {
-    res.status(400).send({ message: "Username already taken" });
+    res.status(400).send({ message: "Email already taken" });
     return;
   }
   if (
@@ -25,14 +25,14 @@ router.post("/signup", async (req, res) => {
     return;
   }
   const hashedPassword = await genPassword(password);
-  const result = await createUser(username, hashedPassword);
+  const result = await createUser(Email, hashedPassword);
   res.send(result);
 });
 
 router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  console.log(username, password);
-  const userFromDb = await getUserByName(username);
+  const { Email, password } = req.body;
+  console.log(Email, password);
+  const userFromDb = await getUserByName(Email);
   console.log(userFromDb);
   if (!userFromDb) {
     res.status(400).send({ message: "Invalid Credentials" });
@@ -60,5 +60,5 @@ router.get("/list", async (req, res) => {
 
 export const userRouter = router;
 
-//Validate userName
+//Validate Email
 //Validate Password
