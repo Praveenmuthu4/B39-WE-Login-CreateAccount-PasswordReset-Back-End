@@ -23,6 +23,9 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
+    res.send("Welcome Back,Please Click on Login to access your Account");
+  });
+  app.get("/welcomeNotes", (req, res) => {
     res.send("Welcome to Login Page");
   });
 
